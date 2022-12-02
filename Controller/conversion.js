@@ -1,4 +1,3 @@
-const sharp = require("sharp");
 const convertTiff = require("tiff-to-png");
 const { unlink } = require("fs");
 const convertFile = async (req, res) => {
