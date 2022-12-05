@@ -29,5 +29,6 @@ const upload = multer({
 });
 
 router.post("/convert", upload.single("path"), conversion.convertFile);
+router.post("/pngToBlob", upload.single("path"), conversion.pngToBlob);
 
 module.exports = router;

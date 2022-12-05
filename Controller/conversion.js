@@ -1,5 +1,9 @@
 const convertTiff = require("tiff-to-png");
+const fs = require("fs");
 const { unlink } = require("fs");
+
+//Convert tiff to png
+
 const convertFile = async (req, res) => {
   try {
     const file = req.file.path;
@@ -27,6 +31,25 @@ const convertFile = async (req, res) => {
   } catch (error) {}
 };
 
+//Convert png to blob
+
+const pngToBlob = (req, res) => {
+  try {
+    //read file
+    const read = fs.readFileSync(req.file.path);
+
+    console.log(read.toString());
+    //delete png file
+    fs.unlinkSync(req.file.path);
+    console.log("file is deleted");
+
+    res.send(read.toString());
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   convertFile,
+  pngToBlob,
 };
